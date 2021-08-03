@@ -1,2 +1,0 @@
-# RidgleaVillage
-Ridglea Village website
