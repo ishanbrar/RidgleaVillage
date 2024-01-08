@@ -1,0 +1,67 @@
+/* style.css */
+body {
+    font-family: 'Roboto', sans-serif; /* Replace 'Roboto' with your atlas-based font */
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+#country-input {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#result {
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 10px;
+}
+
+#guessed-countries {
+    color: #555;
+}
+
+#country-list {
+    font-style: italic;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Add more styling rules as needed */
