@@ -1,32 +1,136 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ishan's GeoHunt</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<html>
+<title>Sikho Mode Solutions</title>
+  head>
+  </head>
+<!--<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
-    <div id="game-container">
-        <h1>Ishan's GeoHunt Game</h1>
-        <button id="start-button">Start Game</button>
-        <div id="game">
-            <p id="letter">Letter: </p>
-            <label for="country-input">Enter a country:</label>
-            <input type="text" id="country-input" disabled>
-            <button id="submit-button" disabled>Submit</button>
-            <button id="hint-button" disabled>Hint</button>
-            <p id="result"></p>
-            <p id="turn-display"></p>
-            <p id="remaining-counter"></p>
-            <p id="guessed-countries"></p>
 
-            <p id="scores">Scores: <span id="player1-name"></span> - <span id="score1">0</span>, <span id="player2-name"></span> - <span id="score2">0</span></p>
-            <div id="country-list"></div>
-        </div>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="index.html" class="w3-bar-item w3-button"><b>$M$</b> Sikho Mode Solutions</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="geogame.html" class="w3-bar-item w3-button">GeoGame</a>
+      <a href="#projects" class="w3-bar-item w3-button">Products</a>
+      <a href="team.html" class="w3-bar-item w3-button">Team</a>
+      <a href="#contact" class="w3-bar-item w3-button">Contact</a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="script.js"></script>
+  </div>
+</div>
+
+<!-- Header -->
+<!-- <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="partyflier.jpg" alt="Village Center"  width="400" height="420">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    
+  </div>
+</header> -->
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+  <img class="w3-image" src="flierfinal.jpg" alt="Village Center"  width="400" height="420">
+  
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">YES, THIS IS A REAL PARTY</h3>
+    <p>On-site rapid COVID tests provided free of charge (w insurance) by our friends at <a href="https://www.immanuelfamilyclinic.com/family-clinic-covid-19-testing">Immanuel Family Clinic.</a>
+      You will be tested at the door! Residents of Coppell and Euless are banned from attending. Venue address dropping 12/30/21.
+    </p>
+  </div>
+
+
+<!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">MISSION STATEMENT</h3>
+    <p>"We win not by fighting what we hate, but by saving what we love." - Dick Cheney
+    </p>
+  </div>
+  
+  <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <a href="team.html" class="w3-btn w3-black">MEET THE TEAM</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Specialties</h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Academics</div>
+        <img src="https://img.buzzfeed.com/buzzfeed-static/static/2016-03/3/8/enhanced/webdr09/enhanced-15929-1457013267-1.jpg?downsize=700%3A%2A&output-quality=auto&output-format=auto" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Matrimonial Services</div>
+        <img src="IMG_1385.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Fraud Detection</div>
+        <img src="IMG_1386.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Nightlife</div>
+        <img src="https://preview.redd.it/j3nbn0gahzr21.jpg?width=960&crop=smart&auto=webp&s=f700e042e13ed43652c2421e4ec18bcfe42a2137" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p>A 21st century consulting group dedicated to solving contemporary problems. 
+    </p>
+    <p>Reach out to JJ with any questions.  
+        </p>
+        <div class="w3-display-topleft w3-black w3-padding">JJ</div>
+        <img src="https://pbs.twimg.com/profile_images/943139249561403392/s-eDOBew_400x400.jpg" alt="House" style="width:60%">
+      </div>
+  </div>
+
+
+  <!-- Contact Section -->
+   <div class="w3-container w3-padding-32" id="contact">
+  <h3>Register for NYE</h3>
+    <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xbjqzkeo" method="post">
+  <fieldset id="fs-frm-inputs">
+    <label for="full-name">Full Name</label>
+    <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
+    <label for="name2">Who Invited You</label>
+    <input rows="2" type="text" name="name2" id="name2" placeholder="Better not say Shub" required="">
+    <label for="message">Vaccine Status</label>
+    <textarea rows="4" name="message" id="message" placeholder="Moderna/Pfizer $10 surcharge; JnJ banned; Novavax Free" required=""></textarea>
+    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+  </fieldset>
+  <input type="submit" value="Submit">
+</form>
+</div><!-- <style>/* reset */
+
+
+
+
+<!-- <!-- Footer -->
+<!-- <footer class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="https://cdn.commercialcafe.com/images/98AB2C16-584F-4D29-821B-2963119BEA8A/1132778.jpg?height=675" alt="Village Center" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+  
+  </div> -->
+</footer> -->
+  <p>Sikho Mode Solutions Group 2021</p>
+
 </body>
 </html>
