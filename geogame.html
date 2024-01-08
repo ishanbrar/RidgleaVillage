@@ -1,0 +1,32 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishan's GeoHunt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Ishan's GeoHunt Game</h1>
+        <button id="start-button">Start Game</button>
+        <div id="game">
+            <p id="letter">Letter: </p>
+            <label for="country-input">Enter a country:</label>
+            <input type="text" id="country-input" disabled>
+            <button id="submit-button" disabled>Submit</button>
+            <button id="hint-button" disabled>Hint</button>
+            <p id="result"></p>
+            <p id="turn-display"></p>
+            <p id="remaining-counter"></p>
+            <p id="guessed-countries"></p>
+
+            <p id="scores">Scores: <span id="player1-name"></span> - <span id="score1">0</span>, <span id="player2-name"></span> - <span id="score2">0</span></p>
+            <div id="country-list"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
