@@ -4,7 +4,7 @@ $(document).ready(function () {
     let currentPlayer = 1;
     let playerScores = { 1: 0, 2: 0 };
     let playerNames = { 1: '', 2: '' };
- let countries = [
+let countries = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
     "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
     "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
@@ -26,8 +26,7 @@ $(document).ready(function () {
     "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia",
     "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States",
     "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-];
-    let countriesGuessed = [];
+];    let countriesGuessed = [];
 
     function startGame() {
         // Get player names
@@ -67,6 +66,9 @@ $(document).ready(function () {
         let validCountry = countries.find(c => c.toUpperCase().startsWith(currentLetter) && c.toUpperCase() === country.toUpperCase());
 
         if (validCountry) {
+            // Fetch additional information about the country
+            fetchCountryInfo(validCountry);
+
             $('#result').text('Correct! ' + playerNames[currentPlayer] + ' scores.');
             playerScores[currentPlayer]++;
             countriesGuessed.push({ name: validCountry, player: currentPlayer });
@@ -93,6 +95,47 @@ $(document).ready(function () {
             alert('No more hints available for this letter.');
         }
     }
+
+    function fetchCountryInfo(countryName) {
+    // Fetch additional information about the country using Restcountries API
+    $.ajax({
+        url: 'https://restcountries.com/v3.1/name/' + countryName + '?fullText=true',
+        method: 'GET',
+        success: function (data) {
+            if (data.length > 0) {
+                let countryInfo = data[0];
+                displayCountryInfo(countryInfo);
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching country information:', error);
+        }
+    });
+}
+
+function displayCountryInfo(countryInfo) {
+    let infoContainer = $('#country-info');
+    infoContainer.empty();
+
+    if (countryInfo.population) {
+        // Format population with commas
+        let formattedPopulation = Number(countryInfo.population).toLocaleString();
+        infoContainer.append('<p>Population: ' + formattedPopulation + '</p>');
+    }
+
+    if (countryInfo.capital) {
+        // Display capital city
+        infoContainer.append('<p>Capital: ' + countryInfo.capital + '</p>');
+    }
+
+    if (countryInfo.flag) {
+        // Display flag emoji
+        infoContainer.append('<p>Flag: ' + countryInfo.flag + '</p>');
+    }
+
+    // Add more information fields as needed
+}
+
 
     function updateScores() {
         $('#score1').text(playerScores[1]);
@@ -144,6 +187,7 @@ $(document).ready(function () {
     function clearResults() {
         $('#result').text('');
         $('#guessed-countries').empty();
+        $('#country-info').empty(); // Clear country info on game start
     }
 
     function endGame() {
