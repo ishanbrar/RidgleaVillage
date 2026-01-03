@@ -101,13 +101,22 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('hashchange', updateActiveNav);
     updateActiveNav();
 
-    // Function to focus terminal input
+    // Function to focus terminal input (optimized for mobile)
     function focusTerminalInput() {
         const homeTerminalInput = document.getElementById('home-terminal-input');
         if (homeTerminalInput) {
-            setTimeout(() => {
-                homeTerminalInput.focus();
-            }, 100);
+            // Use requestAnimationFrame for better mobile performance
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    homeTerminalInput.focus();
+                    // On mobile, also trigger click to ensure keyboard opens
+                    if (window.innerWidth <= 768) {
+                        homeTerminalInput.click();
+                        // Ensure input is visible and scroll into view on mobile
+                        homeTerminalInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 200);
+            });
         }
     }
 
@@ -131,6 +140,116 @@ document.addEventListener('DOMContentLoaded', function() {
         focusTerminalInput();
     }
 
+    // Mobile optimization: Make input lines tappable and focus inputs
+    function setupTerminalWindowFocus() {
+        const homeSection = document.getElementById('home');
+        const legacySection = document.getElementById('legacy');
+        
+        // Home input line click/touch handler
+        const homeInputLine = document.getElementById('home-input-line');
+        if (homeInputLine) {
+            homeInputLine.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const input = document.getElementById('home-terminal-input');
+                if (input) {
+                    input.focus();
+                    // On mobile, ensure keyboard opens
+                    if (window.innerWidth <= 768) {
+                        input.click();
+                    }
+                }
+            }, { passive: false });
+            
+            homeInputLine.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const input = document.getElementById('home-terminal-input');
+                if (input) {
+                    input.focus();
+                    input.click();
+                }
+            }, { passive: false });
+        }
+        
+        // Legacy input line click/touch handler
+        const legacyInputLine = document.getElementById('legacy-input-line');
+        if (legacyInputLine) {
+            legacyInputLine.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const input = document.getElementById('legacy-terminal-input');
+                if (input) {
+                    input.focus();
+                    if (window.innerWidth <= 768) {
+                        input.click();
+                    }
+                }
+            }, { passive: false });
+            
+            legacyInputLine.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const input = document.getElementById('legacy-terminal-input');
+                if (input) {
+                    input.focus();
+                    input.click();
+                }
+            }, { passive: false });
+        }
+        
+        // Also handle terminal window taps (fallback)
+        if (homeSection) {
+            const homeTerminalWindow = homeSection.querySelector('.terminal-window');
+            if (homeTerminalWindow) {
+                homeTerminalWindow.addEventListener('touchend', function(e) {
+                    // Only if not clicking on a link/button and not on input line
+                    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && 
+                        !e.target.closest('a') && !e.target.closest('#home-input-line')) {
+                        const input = document.getElementById('home-terminal-input');
+                        if (input) {
+                            input.focus();
+                            input.click();
+                        }
+                    }
+                }, { passive: true });
+            }
+        }
+        
+        if (legacySection) {
+            const legacyTerminalWindow = legacySection.querySelector('.terminal-window');
+            if (legacyTerminalWindow) {
+                legacyTerminalWindow.addEventListener('touchend', function(e) {
+                    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON' && 
+                        !e.target.closest('a') && !e.target.closest('#legacy-input-line')) {
+                        const input = document.getElementById('legacy-terminal-input');
+                        if (input) {
+                            input.focus();
+                            input.click();
+                        }
+                    }
+                }, { passive: true });
+            }
+        }
+    }
+    
+    // Setup terminal window focus handlers
+    setupTerminalWindowFocus();
+
+    // Focus input when page becomes visible (mobile browser optimization)
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            const homeSection = document.getElementById('home');
+            const legacySection = document.getElementById('legacy');
+            
+            if (homeSection && homeSection.classList.contains('active')) {
+                setTimeout(() => focusTerminalInput(), 200);
+            } else if (legacySection && legacySection.classList.contains('active')) {
+                setTimeout(() => focusLegacyTerminalInput(), 200);
+            }
+        }
+    });
+
     // Legacy section terminal input handler
     const legacyTerminalInput = document.getElementById('legacy-terminal-input');
     const legacyCommandHistory = document.getElementById('legacy-command-history');
@@ -138,12 +257,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const legacyLinkContainer = document.getElementById('legacy-link-container');
     const correctAnswer = 'firestone';
 
-    // Function to focus legacy terminal input
+    // Function to focus legacy terminal input (optimized for mobile)
     function focusLegacyTerminalInput() {
         if (legacyTerminalInput) {
-            setTimeout(() => {
-                legacyTerminalInput.focus();
-            }, 100);
+            // Use requestAnimationFrame for better mobile performance
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    legacyTerminalInput.focus();
+                    // On mobile, also trigger click to ensure keyboard opens
+                    if (window.innerWidth <= 768) {
+                        legacyTerminalInput.click();
+                        // Ensure input is visible and scroll into view on mobile
+                        legacyTerminalInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 200);
+            });
         }
     }
 

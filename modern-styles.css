@@ -358,6 +358,16 @@ body {
     flex: 1;
     margin-left: 0.5rem;
     caret-color: var(--accent);
+    /* Mobile optimization */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    touch-action: manipulation;
+    /* Ensure input is tappable on mobile */
+    min-height: 44px; /* iOS recommended tap target size */
+    width: 100%;
+    /* Make input take full available space */
+    flex-grow: 1;
 }
 
 .terminal-input::placeholder {
@@ -365,10 +375,17 @@ body {
     opacity: 0.5;
 }
 
-#home-input-line {
+#home-input-line,
+#legacy-input-line {
     display: flex;
     align-items: center;
     margin-top: 1rem;
+    /* Make entire line tappable on mobile */
+    cursor: text;
+    min-height: 50px;
+    padding: 8px 0;
+    /* Ensure it's easily tappable */
+    -webkit-tap-highlight-color: rgba(88, 166, 255, 0.3);
 }
 
 #home-command-history {
@@ -446,6 +463,49 @@ body {
 
     .output pre {
         font-size: 0.7rem;
+    }
+    
+    /* Mobile terminal input optimization */
+    .terminal-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: 50px;
+        padding: 12px 0;
+        /* Make input more visible and tappable */
+        background-color: rgba(88, 166, 255, 0.05);
+        border-radius: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    
+    #home-input-line,
+    #legacy-input-line {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        /* Make entire line area more tappable */
+        padding: 8px;
+        margin: 12px 0;
+        background-color: rgba(88, 166, 255, 0.03);
+        border-radius: 6px;
+        border: 1px solid rgba(88, 166, 255, 0.2);
+        /* Visual indicator that it's tappable */
+        transition: background-color 0.2s ease;
+    }
+    
+    #home-input-line:active,
+    #legacy-input-line:active {
+        background-color: rgba(88, 166, 255, 0.1);
+    }
+    
+    /* Make terminal window more touch-friendly */
+    .terminal-window {
+        touch-action: manipulation;
+    }
+    
+    .terminal-body {
+        /* Ensure terminal body is scrollable and touch-friendly */
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
     }
 }
 
