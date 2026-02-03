@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Princess - A Valentine's Letter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #f8bbd0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card-container {
+            background: #fff8f0;
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px
+                );
+            pointer-events: none;
+            border-radius: 10px;
+        }
+
+        .greeting {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .letter-body {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .letter-body p {
+            margin-bottom: 20px;
+        }
+
+        .valentine-question {
+            font-size: 22px;
+            color: #e91e63;
+            font-weight: bold;
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .signature {
+            font-size: 18px;
+            color: #000;
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+        }
+
+
+        .hidden {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                padding: 40px 30px;
+            }
+
+            .greeting {
+                font-size: 20px;
+            }
+
+            .letter-body {
+                font-size: 16px;
+            }
+
+            .valentine-question {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="greeting" id="greeting"></div>
+        <div class="letter-body" id="letter-body">
+            <p id="para1"></p>
+            <p id="para2"></p>
+            <p id="para3"></p>
+        </div>
+        <div class="valentine-question" id="valentine-question"></div>
+        <div class="signature" id="signature"></div>
+    </div>
+
+    <script>
+        // Typewriter effect function
+        function typeWriter(element, text, speed = 30, callback) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    // Handle HTML tags (like <br>)
+                    if (text.substring(i, i + 4) === '<br>') {
+                        element.innerHTML += '<br>';
+                        i += 4;
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    }
+                    setTimeout(type, speed);
+                } else {
+                    if (callback) callback();
+                }
+            }
+
+            type();
+        }
+
+        // Start the typewriter effect when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const greeting = document.getElementById('greeting');
+            const para1 = document.getElementById('para1');
+            const para2 = document.getElementById('para2');
+            const para3 = document.getElementById('para3');
+            const valentineQuestion = document.getElementById('valentine-question');
+            const signature = document.getElementById('signature');
+
+            const text1 = 'As I feel the cold wind on my face, I reminisce of warmth.<br><br>Warmth not in heat, but in a different sense of comfort. warmth in the form of your companionship, your partnership - your love. I know that I could stand in this cold for maybe a few minutes before returning to the heat of the indoors, but the buildings here do not have the warmth I truly seek. that is found only at your side. my head, toes and fingers may finally feel blood flowing again, but my heart is still missing something... you.';
+            const text2 = 'I write to you from nearly as far as we have ever been. Yet, I have never felt more attached to your love, your warmth, you.';
+            const text3 = 'From across a thousand rivers, lakes, mountains, plains, forests, deserts, and howling winter winds, I reach my hand out to you as I always have with one question...';
+
+            // Start typing greeting (30% speed = multiply by ~3.33, so 50 becomes ~167, 20 becomes ~67, 40 becomes ~133)
+            setTimeout(() => {
+                typeWriter(greeting, 'Dear Princess,', 167, () => {
+                    setTimeout(() => {
+                        // Start first paragraph
+                        typeWriter(para1, text1, 67, () => {
+                            setTimeout(() => {
+                                // Start second paragraph
+                                typeWriter(para2, text2, 67, () => {
+                                    setTimeout(() => {
+                                        // Start third paragraph
+                                        typeWriter(para3, text3, 67, () => {
+                                            setTimeout(() => {
+                                                // Start valentine question
+                                                typeWriter(valentineQuestion, 'My princess, Sreeya, will you be my Valentine?', 133, () => {
+                                                    setTimeout(() => {
+                                                        // Add signature
+                                                        typeWriter(signature, 'With love, IBS', 100, () => {
+                                                            // Done typing
+                                                        });
+                                                    }, 1000);
+                                                });
+                                            }, 500);
+                                        });
+                                    }, 500);
+                                });
+                            }, 500);
+                        });
+                    }, 800);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

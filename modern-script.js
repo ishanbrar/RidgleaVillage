@@ -433,6 +433,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const commandLower = command.toLowerCase();
                     
+                    // Handle princess/sreeya command - redirect to princess page
+                    if (commandLower === 'princess' || commandLower === 'sreeya') {
+                        // Display the command
+                        const commandLine = document.createElement('div');
+                        commandLine.className = 'terminal-line';
+                        commandLine.innerHTML = `<span class="prompt">agent$</span><span class="command">${command}</span>`;
+                        homeCommandHistory.appendChild(commandLine);
+                        
+                        // Clear input
+                        this.value = '';
+                        
+                        // Show loading message
+                        const loadingDiv = document.createElement('div');
+                        loadingDiv.className = 'output';
+                        loadingDiv.innerHTML = `<p>> Opening letter...</p>`;
+                        homeCommandHistory.appendChild(loadingDiv);
+                        
+                        // Redirect to princess page
+                        setTimeout(() => {
+                            window.location.href = 'princess.html';
+                        }, 500);
+                        
+                        return;
+                    }
+                    
                     // Handle clear command separately
                     if (commandLower === 'clear') {
                         // Display the command
